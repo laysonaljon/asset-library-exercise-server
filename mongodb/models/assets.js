@@ -16,6 +16,7 @@ const kpiSchema = new mongoose.Schema({
     favorited: { type: Boolean, default: false },
     sharedCount: { type: Number, default: 0 },
     businessQuestion: [businessQuestionSchema],
+    preview: { type: [String], default: [] },
     metricID: { type: String, required: true, unique: true },
     calculation: { type: String, required: true },
     affiliateApplicability: { type: Boolean, default: false },
@@ -35,7 +36,7 @@ const layoutSchema = new mongoose.Schema({
     favorited: { type: Boolean, default: false, required:true },
     sharedCount: { type: Number, default: 0 },
     businessQuestion: [businessQuestionSchema],
-    page: { type: [String], default: [] },
+    preview: { type: [String], default: [] },
     kpiUsed: { type: [String], default: [] },
     access: {type:String ,required:true}, 
 });
@@ -49,6 +50,7 @@ const visualizationSchema = new mongoose.Schema({
     usedCount:{type:Number ,default : 0},
     favoritedCount:{type:Number ,default : 0},
     sharedCount:{type:Number ,default : 0},
+    preview: { type: [String], default: [] },
     applicableKpiIDs: { type: [String], default: [] },
     infoContext:{type:String ,required:true},
     access: {type:String ,required:true}, 
@@ -65,6 +67,7 @@ const storyboardSchema = new mongoose.Schema({
     favorited: { type: Boolean, default: false },
     sharedCount:{type:Number ,default : 0},
     kpifilters:[{type:String}],
+    preview: { type: [String], default: [] },
     affiliates:{type:String ,required:true}, 
     access: {type:String ,required:true},
 });

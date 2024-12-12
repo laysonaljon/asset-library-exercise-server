@@ -7,7 +7,7 @@ dotenv.config();
 const router = express.Router();
 
 // GET /api/v1/assets - Fetch all assets
-router.get('/', async (req, res) => {
+router.get('/all', async (req, res) => {
     try {
         const kpis = await KPI.find({}).select('_id title description lastUpdated category access');
         const layouts = await Layout.find({}).select('_id title description lastUpdated category access');
@@ -211,6 +211,8 @@ router.post('/kpi', async (req, res) => {
             favoritedCount= 0,
             favorited= false,
             sharedCount= 0,
+            tags = [],
+            preview = [],
             businessQuestion,
             metricID,
             calculation,
@@ -227,6 +229,8 @@ router.post('/kpi', async (req, res) => {
             favoritedCount,
             favorited,
             sharedCount,
+            tags,
+            preview,
             businessQuestion,
             metricID,
             calculation,
@@ -253,7 +257,7 @@ router.post('/layouts', async (req, res) => {
             type,
             about,
             tags = [],
-            page = [],
+            preview = [],
             businessQuestion,
             usedCount= 0,
             favoritedCount= 0,
@@ -275,12 +279,12 @@ router.post('/layouts', async (req, res) => {
             about,
             lastUpdated: Date.now(),
             tags,
+            preview,
             usedCount,
             favoritedCount,
             favorited,
             sharedCount,
             businessQuestion,
-            page,
             kpiUsed,
             access
         });
@@ -302,6 +306,7 @@ router.post('/visualizations', async (req, res) => {
             category,
             description,
             tags = [],
+            preview = [],
             infoContext,
             usedCount= 0,
             favoritedCount= 0,
@@ -321,6 +326,7 @@ router.post('/visualizations', async (req, res) => {
             description,
             lastUpdated: Date.now(),
             tags,
+            preview,
             usedCount,
             favoritedCount,
             favorited,
@@ -347,6 +353,7 @@ router.post('/storyboards', async (req, res) => {
             category,
             description,
             tags = [],
+            preview = [],
             usedCount= 0,
             favoritedCount= 0,
             favorited= false,
@@ -366,6 +373,7 @@ router.post('/storyboards', async (req, res) => {
             description,
             lastUpdated: Date.now(),
             tags,
+            preview,
             usedCount,
             favoritedCount,
             favorited,
